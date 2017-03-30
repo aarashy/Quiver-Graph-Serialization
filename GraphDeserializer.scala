@@ -11,6 +11,8 @@ object GraphDeserializer {
     * Deserializes a serialized graph in the format produced by my GraphSerializer object's
     * SerializeGraph method. By design, has the unfortunate side effect of mapping toString
     * onto all fields of the graph.
+    * 
+    * Deserializing by context has not yet been implemented.
     *
     * @param str A serialized graph outputted by the SerializeGraph method.
     * @return Either successfully returns the original Graph which was serialized, with
@@ -24,10 +26,10 @@ object GraphDeserializer {
       * A recursive helper method that curries nodeList and edgeList as it parses the serialized graph.
       * Either successfully returns the list of nodes and the list of edges,
       * or returns None.
-      * @param index
-      * @param nodeList
-      * @param edgeList
-      * @param mode
+      * @param index The line number of the string being parsed.
+      * @param nodeList Begins as empty and is curried along during the execution of the function.
+      * @param edgeList Same as above
+      * @param mode Keeps track of what is currently being parsed. 1 indicates nodes are being parsed; 2 indicates edges, and 3, contexts.
       * @return
       */
     def DeserializeHelper(index: Int=0, nodeList: Seq[LNode[String,String]] = Seq(), edgeList: Seq[LEdge[String,String]] = Seq(), mode: Int = 0)
