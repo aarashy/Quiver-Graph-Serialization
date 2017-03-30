@@ -75,11 +75,8 @@ object GraphDeserializer {
       else if (mode == 3) p match {
         case "[" => DeserializeHelper(index + 1, nodeList, edgeList, mode=3)
         case "{" =>
-          val f = s(index+1).substring(8, s(index+1).length()-1)
-          val t = s(index+2).substring(6, s(index+2).length()-1)
-          val l = s(index+3).substring(9)
-          val n = LEdge(f, t, l)
-          return DeserializeHelper(index+4, nodeList, edgeList=edgeList.+:(n), mode=3)
+          Somehow handle Contexts here... Not yet implemented.
+          return DeserializeHelper(index+4, nodeList, edgeList), mode=3)
         case "}" => DeserializeHelper(index + 1, nodeList, edgeList, mode=2)
         case "]" => DeserializeHelper(index + 1, nodeList, edgeList)
         case _ => None
